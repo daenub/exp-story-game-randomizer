@@ -1,20 +1,13 @@
 {
-  "name": "webpack-boilerplate",
+  "name": "exp-story-game-randomizer",
   "version": "1.0.0",
-  "description": "Webpack 4 Boilerplate",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+    "deploy": "gh-pages -d dist"
   },
-  "keywords": [
-    "webpack",
-    "webpack 4",
-    "webpack boilerplate",
-    "boilerplate",
-    "hmr"
-  ],
-  "author": "Tania Rascia <tania@taniarascia.com>",
+  "author": "Dan Büschlen <danbueschlen@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -43,6 +36,7 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "gh-pages": "^2.1.1"
   }
 }
