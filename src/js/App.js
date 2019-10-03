@@ -13,7 +13,9 @@ export default () => {
       <div className="turns">
         <strong className="label">Turn</strong>
         <div className="value">{turn}</div>
-        <button className="button" onClick={nextTurn}>Next Turn</button>
+        <button className="button" onClick={nextTurn}>
+          Next Turn
+        </button>
       </div>
       <Timer />
       <Randomizer turn={turn} />

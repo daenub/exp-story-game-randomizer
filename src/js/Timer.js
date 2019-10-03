@@ -22,12 +22,8 @@ export const Timer = () => {
 
   return (
     <div className="timer">
-      <strong className="label">
-        Timer
-      </strong>
-      <div className="value">
-        {time}
-      </div>
+      <strong className="label">Timer</strong>
+      <div className="value">{time}</div>
       <button className="button" onClick={() => setRunning(!running)}>
         {running ? "Pause" : "Start"}
       </button>

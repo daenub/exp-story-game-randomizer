@@ -21,7 +21,9 @@ export const Randomizer = () => {
       <div className="value">{getEmotion(emotion)}</div>
       <strong className="label">Object</strong>
       <div className="value">{getEmotion(object)}</div>
-      <button className="button" onClick={shuffle}>Shuffle</button>
+      <button className="button" onClick={shuffle}>
+        Shuffle
+      </button>
     </div>
   )
 }
