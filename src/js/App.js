@@ -1,12 +1,25 @@
-import React, {useState} from "react"
+import React, {useState, useRef} from "react"
 
 import {Timer} from "./Timer"
 import {Randomizer} from "./Randomizer"
 
 export default () => {
   const [turn, setTurn] = useState(1)
+  const turnSubsriptions = useRef([])
 
-  const nextTurn = () => setTurn(turn => ++turn)
+  const subscribeToTurns = fn => turnSubsriptions.current.push(fn)
+  const unsubscribeFromTurns = fn =>
+    (turnSubsriptions.current = turnSubsriptions.current.filter(
+      item => item !== fn
+    ))
+
+  const nextTurn = () => {
+    setTurn(turn => {
+      let nextTurn = ++turn
+      turnSubsriptions.current.forEach(fn => fn(nextTurn))
+      return nextTurn
+    })
+  }
 
   return (
     <main className="main">
@@ -17,8 +30,8 @@ export default () => {
           Next Turn
         </button>
       </div>
-      <Timer />
-      <Randomizer turn={turn} />
+      <Timer {...{subscribeToTurns, unsubscribeFromTurns}} />
+      <Randomizer {...{subscribeToTurns, unsubscribeFromTurns, turn}} />
     </main>
   )
 }

@@ -20,7 +20,7 @@ export const Randomizer = () => {
       <strong className="label">Emotion</strong>
       <div className="value">{getEmotion(emotion)}</div>
       <strong className="label">Object</strong>
-      <div className="value">{getEmotion(object)}</div>
+      <div className="value">{getObject(object)}</div>
       <button className="button" onClick={shuffle}>
         Shuffle
       </button>
