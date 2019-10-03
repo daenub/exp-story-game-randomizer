@@ -21,8 +21,11 @@
     "cross-env": "^5.2.1",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
-    "eslint": "^6.2.2",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
     "eslint-loader": "^3.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.15.1",
     "file-loader": "^4.2.0",
     "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
@@ -31,6 +34,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^1.4.1",
@@ -43,5 +47,11 @@
   "dependencies": {
     "react": "^16.10.1",
     "react-dom": "^16.10.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "bracketSpacing": false,
   }
 }
