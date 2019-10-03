@@ -31,7 +31,7 @@ export default () => {
         </button>
       </div>
       <Timer {...{subscribeToTurns, unsubscribeFromTurns}} />
-      <Randomizer {...{subscribeToTurns, unsubscribeFromTurns, turn}} />
+      <Randomizer {...{subscribeToTurns, unsubscribeFromTurns}} />
     </main>
   )
 }
