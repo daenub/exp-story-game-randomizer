@@ -38,8 +38,18 @@ html {
   border: 1px solid #b1b1b1;
   border-radius: 2px;
 
+  transition: 0.2s ease;
+
   &.warning {
-    color: red;
+    color: $warning-color;
+    border-color: $warning-color;
+    background-color: $warning-bg;
+  }
+
+  &.danger {
+    color: $danger-color;
+    border-color: $danger-color;
+    background-color: $danger-bg;
   }
 }
 

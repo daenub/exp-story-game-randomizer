@@ -13,6 +13,7 @@ export const Randomizer = ({subscribeToTurns, unsubscribeFromTurns}) => {
   const [place, setPlace] = useState(getRandomIndex(places))
 
   const shuffle = (turnNumber = null) => {
+    // shuffle the place every 4th turn or when the turn isn't specified
     if (turnNumber === null || turnNumber % 4 === 0) {
       setPlace(getRandomIndex(places))
     }

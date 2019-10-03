@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from "react"
 
-const TURN_DURATION = 3
+const WARNING_TIME = 20
+const DANGER_TIME = 30
 
 export const Timer = ({subscribeToTurns, unsubscribeFromTurns}) => {
   const [running, setRunning] = useState(false)
   const [time, setTime] = useState(0)
+
+  const timeClass =
+    time > WARNING_TIME ? (time > DANGER_TIME ? "danger" : "warning") : ""
 
   useEffect(() => {
     const handleTurnChange = () => {
@@ -33,9 +37,7 @@ export const Timer = ({subscribeToTurns, unsubscribeFromTurns}) => {
   return (
     <div className="timer">
       <strong className="label">Timer</strong>
-      <div className={`value ${time > TURN_DURATION ? "warning" : ""}`}>
-        {time}
-      </div>
+      <div className={`value ${timeClass}`}>{time}</div>
       <div className="button-group">
         <button className="button" onClick={() => setRunning(!running)}>
           {running ? "Pause" : "Start"}
