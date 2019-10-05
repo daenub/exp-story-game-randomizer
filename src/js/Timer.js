@@ -1,21 +1,30 @@
 import React, {useState, useEffect} from "react"
+import {useSelector, useDispatch} from "react-redux"
+
+import {toggleTimer, resetTimer} from "./store/actions.js"
+import {timerIsRunning, currentSeconds} from "./store/selectors.js"
 
 const WARNING_TIME = 20
 const DANGER_TIME = 30
 
 export const Timer = () => {
-  const [running, setRunning] = useState(false)
-  const [time, setTime] = useState(0)
+  const dispatch = useDispatch()
+
+  // TODO i have no idea if this is orrect or not
+  const [currentTime, setCurrentTime] = useState(null)
+
+  const running = useSelector(timerIsRunning)
+  const seconds = useSelector(state => currentSeconds(state, currentTime))
 
   const timeClass =
-    time > WARNING_TIME ? (time > DANGER_TIME ? "danger" : "warning") : ""
+    seconds > WARNING_TIME ? (seconds > DANGER_TIME ? "danger" : "warning") : ""
 
   useEffect(() => {
     let intervalId
 
     if (running) {
       intervalId = setInterval(() => {
-        setTime(time => ++time)
+        setCurrentTime(new Date())
       }, 1000)
     }
 
@@ -27,12 +36,12 @@ export const Timer = () => {
   return (
     <div className="timer">
       <strong className="label">Timer</strong>
-      <div className={`value ${timeClass}`}>{time}</div>
+      <div className={`value ${timeClass}`}>{seconds}</div>
       <div className="button-group">
-        <button className="button" onClick={() => setRunning(!running)}>
+        <button className="button" onClick={() => dispatch(toggleTimer())}>
           {running ? "Pause" : "Start"}
         </button>
-        <button className="button" onClick={() => setTime(0)}>
+        <button className="button" onClick={() => dispatch(resetTimer())}>
           Reset
         </button>
       </div>

@@ -50,6 +50,28 @@ function currentTurn(state = 0, action) {
   }
 }
 
+function time(state = {startedAt: null, pausedAt: null}, action) {
+  switch (action.type) {
+    case "START_TIMER":
+      return {
+        startedAt: action.time,
+        pausedAt: null,
+      }
+    case "PAUSE_TIMER":
+      return {
+        ...state,
+        pausedAt: action.time,
+      }
+    case "RESET_TIMER":
+      return {
+        startedAt: null,
+        pausedAt: null,
+      }
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   emotions,
   objects,
@@ -58,6 +80,7 @@ const reducer = combineReducers({
   objectsOrder,
   placesOrder,
   currentTurn,
+  time,
 })
 
 export default reducer

@@ -1,3 +1,5 @@
+import {timerIsRunning} from "./selectors.js"
+
 function shuffle(a) {
   let j, x, i
   let array = a.concat()
@@ -45,8 +47,48 @@ export function initNewGame() {
 }
 
 export function nextTurn() {
-  return (dispatch, getState) => {
-    const {currentTurn} = getState()
+  return dispatch => {
     dispatch({type: "NEXT_TURN"})
+    dispatch({
+      type: "RESET_TIMER",
+      time: new Date().getTime(),
+    })
+  }
+}
+
+export function toggleTimer() {
+  return (dispatch, getState) => {
+    const state = getState()
+    const {time} = state
+
+    const running = timerIsRunning(state)
+
+    if (running) {
+      dispatch(pauseTimer())
+    } else {
+      dispatch(startTimer(time.startedAt, time.pausedAt))
+    }
+  }
+}
+
+export function startTimer(startedAt = null, pausedAt = null) {
+  const passedTime = startedAt && pausedAt ? pausedAt - startedAt : 0
+
+  return {
+    type: "START_TIMER",
+    time: new Date().getTime() - passedTime,
+  }
+}
+
+export function pauseTimer() {
+  return {
+    type: "PAUSE_TIMER",
+    time: new Date().getTime(),
+  }
+}
+
+export function resetTimer() {
+  return {
+    type: "RESET_TIMER",
   }
 }
