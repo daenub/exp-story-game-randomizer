@@ -1,5 +1,8 @@
 import React, {useState, useRef} from "react"
 
+import {Provider as ReduxProvider} from "react-redux"
+import {configureStore} from "./store/store"
+
 import {Timer} from "./Timer"
 import {Randomizer} from "./Randomizer"
 
@@ -22,16 +25,18 @@ export default () => {
   }
 
   return (
-    <main className="main">
-      <div className="turns">
-        <strong className="label">Turn</strong>
-        <div className="value">{turn}</div>
-        <button className="button" onClick={nextTurn}>
-          Next Turn
-        </button>
-      </div>
-      <Timer {...{subscribeToTurns, unsubscribeFromTurns}} />
-      <Randomizer {...{subscribeToTurns, unsubscribeFromTurns}} />
-    </main>
+    <ReduxProvider store={configureStore()}>
+      <main className="main">
+        <div className="turns">
+          <strong className="label">Turn</strong>
+          <div className="value">{turn}</div>
+          <button className="button" onClick={nextTurn}>
+            Next Turn
+          </button>
+        </div>
+        <Timer {...{subscribeToTurns, unsubscribeFromTurns}} />
+        <Randomizer {...{subscribeToTurns, unsubscribeFromTurns}} />
+      </main>
+    </ReduxProvider>
   )
 }

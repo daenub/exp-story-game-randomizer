@@ -178,7 +178,6 @@ export const objects = [
 ]
 
 export const places = [
-  "",
   "Alp",
   "am Fluss",
   "am Meer",

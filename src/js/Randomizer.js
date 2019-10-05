@@ -1,16 +1,22 @@
 import React, {useState, useEffect} from "react"
-
-import {emotions, objects, places} from "./data.js"
+import {useSelector} from "react-redux"
 
 const getRandomIndex = list => Math.floor(Math.random() * list.length)
-const getEmotion = i => emotions[i]
-const getObject = i => objects[i]
-const getPlace = i => places[i]
 
 export const Randomizer = ({subscribeToTurns, unsubscribeFromTurns}) => {
+  const {emotions, objects, places} = useSelector(state => ({
+    emotions: state.emotions,
+    objects: state.objects,
+    places: state.places,
+  }))
+
   const [emotion, setEmotion] = useState(getRandomIndex(emotions))
   const [object, setObject] = useState(getRandomIndex(objects))
   const [place, setPlace] = useState(getRandomIndex(places))
+
+  const getEmotion = i => emotions[i]
+  const getObject = i => objects[i]
+  const getPlace = i => places[i]
 
   const shuffle = (turnNumber = null) => {
     // shuffle the place every 4th turn or when the turn isn't specified
