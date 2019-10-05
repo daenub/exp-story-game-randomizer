@@ -5,6 +5,8 @@ import logger from "redux-logger"
 
 import {emotions, objects, places} from "./data.js"
 
+import {initNewGame} from "./actions.js"
+
 export function configureStore() {
   const initialState = {
     emotions,
@@ -13,6 +15,8 @@ export function configureStore() {
   }
 
   let store = createStore(reducer, initialState, applyMiddleware(thunk, logger))
+
+  store.dispatch(initNewGame())
 
   // if (module.hot) {
   //   module.hot.accept(() => {

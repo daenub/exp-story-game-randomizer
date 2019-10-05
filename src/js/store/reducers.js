@@ -14,6 +14,8 @@ function places(state = []) {
 
 function emotionsOrder(state = [], action) {
   switch (action.type) {
+    case "SET_EMOTIONS_ORDER":
+      return action.list
     default:
       return state
   }
@@ -21,6 +23,8 @@ function emotionsOrder(state = [], action) {
 
 function objectsOrder(state = [], action) {
   switch (action.type) {
+    case "SET_OBJECTS_ORDER":
+      return action.list
     default:
       return state
   }
@@ -28,6 +32,8 @@ function objectsOrder(state = [], action) {
 
 function placesOrder(state = [], action) {
   switch (action.type) {
+    case "SET_PLACES_ORDER":
+      return action.list
     default:
       return state
   }
