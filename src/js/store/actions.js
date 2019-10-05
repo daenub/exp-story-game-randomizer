@@ -14,6 +14,8 @@ function shuffle(a) {
 
 export function initNewGame() {
   return (dispatch, getState) => {
+    dispatch({type: "NEW_GAME"})
+
     const {emotions, objects, places} = getState()
 
     let emotionsOrder = emotions.map((e, i) => i)
@@ -39,5 +41,12 @@ export function initNewGame() {
       type: "SET_PLACES_ORDER",
       list: placesOrder,
     })
+  }
+}
+
+export function nextTurn() {
+  return (dispatch, getState) => {
+    const {currentTurn} = getState()
+    dispatch({type: "NEXT_TURN"})
   }
 }

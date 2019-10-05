@@ -1,42 +1,36 @@
-import React, {useState, useRef} from "react"
+import React from "react"
 
-import {Provider as ReduxProvider} from "react-redux"
+import {Provider as ReduxProvider, useDispatch, useSelector} from "react-redux"
 import {configureStore} from "./store/store"
 
 import {Timer} from "./Timer"
 import {Randomizer} from "./Randomizer"
 
-export default () => {
-  const [turn, setTurn] = useState(1)
-  const turnSubsriptions = useRef([])
-
-  const subscribeToTurns = fn => turnSubsriptions.current.push(fn)
-  const unsubscribeFromTurns = fn =>
-    (turnSubsriptions.current = turnSubsriptions.current.filter(
-      item => item !== fn
-    ))
+const App = () => {
+  const dispatch = useDispatch()
+  const currentTurn = useSelector(state => state.currentTurn)
 
   const nextTurn = () => {
-    setTurn(turn => {
-      let nextTurn = ++turn
-      turnSubsriptions.current.forEach(fn => fn(nextTurn))
-      return nextTurn
-    })
+    dispatch({type: "NEXT_TURN"})
   }
 
   return (
-    <ReduxProvider store={configureStore()}>
-      <main className="main">
-        <div className="turns">
-          <strong className="label">Turn</strong>
-          <div className="value">{turn}</div>
-          <button className="button" onClick={nextTurn}>
-            Next Turn
-          </button>
-        </div>
-        <Timer {...{subscribeToTurns, unsubscribeFromTurns}} />
-        <Randomizer {...{subscribeToTurns, unsubscribeFromTurns}} />
-      </main>
-    </ReduxProvider>
+    <main className="main">
+      <div className="turns">
+        <strong className="label">Turn</strong>
+        <div className="value">{currentTurn + 1}</div>
+        <button className="button" onClick={nextTurn}>
+          Next Turn
+        </button>
+      </div>
+      <Timer />
+      <Randomizer />
+    </main>
   )
 }
+
+export default () => (
+  <ReduxProvider store={configureStore()}>
+    <App />
+  </ReduxProvider>
+)

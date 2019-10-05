@@ -39,6 +39,17 @@ function placesOrder(state = [], action) {
   }
 }
 
+function currentTurn(state = 0, action) {
+  switch (action.type) {
+    case "NEW_GAME":
+      return 0
+    case "NEXT_TURN":
+      return state + 1
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   emotions,
   objects,
@@ -46,6 +57,7 @@ const reducer = combineReducers({
   emotionsOrder,
   objectsOrder,
   placesOrder,
+  currentTurn,
 })
 
 export default reducer
