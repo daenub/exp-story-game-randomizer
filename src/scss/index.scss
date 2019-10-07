@@ -1,6 +1,8 @@
 @import "reset";
 @import "variables";
 
+@import "turns";
+
 html,
 body {
   padding: 0;
@@ -14,7 +16,7 @@ html {
 }
 
 .main {
-  max-width: 30em;
+  max-width: 36em;
   margin: 3rem auto;
   padding: 2rem;
 

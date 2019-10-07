@@ -3,25 +3,46 @@ import {createSelector} from "reselect"
 const emotions = state => state.emotions
 const objects = state => state.objects
 const places = state => state.places
-const currentTurn = state => state.currentTurn
+export const getCurrentTurn = state => state.currentTurn
 const time = state => state.time
 
-export const currentEmotion = createSelector(
+export const orderedEmotionList = createSelector(
   emotions,
-  currentTurn,
-  (emotions, turn) => emotions[turn]
+  state => state.emotionsOrder,
+  (list, order) => order.map(i => list[i])
 )
 
-export const currentObject = createSelector(
+export const orderedObjectList = createSelector(
   objects,
-  currentTurn,
-  (objects, turn) => objects[turn]
+  state => state.objectsOrder,
+  (list, order) => order.map(i => list[i])
 )
 
-export const currentPlace = createSelector(
+export const orderedPlaceList = createSelector(
   places,
-  currentTurn,
-  (places, turn) => places[Math.floor(turn / 4)]
+  state => state.placesOrder,
+  (list, order) => order.map(i => list[i])
+)
+
+export const orderedTurnList = createSelector(
+  orderedEmotionList,
+  orderedObjectList,
+  orderedPlaceList,
+  (emotions, objects, places) => {
+    const maxLength = 16 // four times four turns
+    const turnList = []
+
+    for (let i = 0; i <= maxLength - 1; i++) {
+      turnList.push({
+        turn: i + 1,
+        emotion: emotions[i],
+        object: objects[i],
+        place: places[Math.floor(i / 4)],
+      })
+    }
+
+    return turnList
+  }
 )
 
 export const timerIsRunning = createSelector(
