@@ -1,5 +1,13 @@
+$turn-row-height: 33 / 16 * 1rem;
+
+.turn-list-wrapper {
+  height: 3 * $turn-row-height;
+  overflow: hidden;
+}
+
 .turn-list {
   list-style: none;
+  transition: transform 0.3s ease;
 }
 
 .turn-row {
@@ -9,14 +17,23 @@
 
   margin: 0 -0.5rem;
   border-bottom: 1px solid #000;
+
+  opacity: 0.5;
+
+  transition: 0.3s ease;
+  transition-property: opacity, background-color;
+
+  max-height: $turn-row-height;
 }
 
 .turn-row--header {
   font-weight: bold;
+  margin: 0;
 }
 
 .turn-row--current {
   background-color: white;
+  opacity: 1;
 }
 
 .turn-row__cell {
