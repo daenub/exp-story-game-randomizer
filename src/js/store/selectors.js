@@ -1,5 +1,7 @@
 import {createSelector} from "reselect"
 
+import {TURNS_PER_PLACE, GAME_DURATION} from "../config.js"
+
 const emotions = state => state.emotions
 const objects = state => state.objects
 const places = state => state.places
@@ -29,15 +31,14 @@ export const orderedTurnList = createSelector(
   orderedObjectList,
   orderedPlaceList,
   (emotions, objects, places) => {
-    const maxLength = 16 // four times four turns
-    const turnList = []
+    let turnList = []
 
-    for (let i = 0; i <= maxLength - 1; i++) {
+    for (let i = 0; i <= GAME_DURATION - 1; i++) {
       turnList.push({
         turn: i + 1,
         emotion: emotions[i],
         object: objects[i],
-        place: places[Math.floor(i / 4)],
+        place: places[Math.floor(i / TURNS_PER_PLACE)],
       })
     }
 

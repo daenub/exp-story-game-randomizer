@@ -1,0 +1,3 @@
+export const TURNS_PER_PLACE = 4
+export const PLACES_PER_GAME = 4
+export const GAME_DURATION = PLACES_PER_GAME * TURNS_PER_PLACE

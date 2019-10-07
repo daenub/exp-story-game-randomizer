@@ -12,7 +12,7 @@ export const Randomizer = () => {
 
   useEffect(() => {
     const rowHeight = turnHeader.current.offsetHeight
-    let turnMultiplicator = currentTurn - 1
+    let turnMultiplicator = currentTurn === 0 ? 0 : currentTurn - 1
 
     turnList.current.style.transform = `translateY(${turnMultiplicator *
       rowHeight *
@@ -32,7 +32,13 @@ export const Randomizer = () => {
           {turns.map(({turn, place, emotion, object}) => (
             <li
               className={`turn-row ${
-                turn === currentTurn + 1 ? "turn-row--current" : ""
+                turn === currentTurn + 1
+                  ? "turn-row--current"
+                  : turn === currentTurn
+                  ? "turn-row--prev"
+                  : turn === currentTurn + 2
+                  ? "turn-row--next"
+                  : ""
               }`}
               key={turn}
             >

@@ -18,7 +18,7 @@ $turn-row-height: 33 / 16 * 1rem;
   margin: 0 -0.5rem;
   border-bottom: 1px solid #000;
 
-  opacity: 0.5;
+  opacity: 0;
 
   transition: 0.3s ease;
   transition-property: opacity, background-color;
@@ -29,11 +29,17 @@ $turn-row-height: 33 / 16 * 1rem;
 .turn-row--header {
   font-weight: bold;
   margin: 0;
+  opacity: 1;
 }
 
 .turn-row--current {
   background-color: white;
   opacity: 1;
+}
+
+.turn-row--prev,
+.turn-row--next {
+  opacity: 0.5;
 }
 
 .turn-row__cell {
