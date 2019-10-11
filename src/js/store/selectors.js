@@ -6,7 +6,7 @@ const emotions = state => state.emotions
 const objects = state => state.objects
 const places = state => state.places
 export const getCurrentTurn = state => state.currentTurn
-const time = state => state.time
+export const getTime = state => state.time
 
 export const orderedEmotionList = createSelector(
   emotions,
@@ -47,19 +47,21 @@ export const orderedTurnList = createSelector(
 )
 
 export const timerIsRunning = createSelector(
-  time,
+  getTime,
   time => time.pausedAt === null && time.startedAt !== null
 )
 
 const getSeconds = time => Math.floor(time / 1000)
 
 export const currentSeconds = createSelector(
-  time,
+  getTime,
   timerIsRunning,
   (_, currentTime) => currentTime,
   (time, timerIsRunning, currentTime) => {
     if (timerIsRunning) {
-      return currentTime ? getSeconds(currentTime - time.startedAt) : 0
+      return currentTime
+        ? Math.max(getSeconds(currentTime - time.startedAt), 0)
+        : 0
     } else if (time.startedAt) {
       return getSeconds(time.pausedAt - time.startedAt)
     } else {
