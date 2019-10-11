@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from "react"
 import {useSelector} from "react-redux"
 
-// import {toggleTimer, resetTimer} from "./store/actions.js"
 import {timerIsRunning, currentSeconds} from "./store/selectors.js"
 
 const WARNING_TIME = 20
 const DANGER_TIME = 30
 
-export const Timer = () => {
-  // const dispatch = useDispatch()
+const pad0 = n => (n > 9 ? n : "0" + n)
 
-  // TODO i have no idea if this is orrect or not
+const formatTime = seconds => {
+  const m = Math.floor(seconds / 60)
+  const s = Math.floor(seconds % 60)
+
+  return `${pad0(m)}:${pad0(s)}`
+}
+
+export const Timer = () => {
   const [currentTime, setCurrentTime] = useState(null)
 
   const running = useSelector(timerIsRunning)
@@ -33,14 +38,5 @@ export const Timer = () => {
     }
   }, [running])
 
-  return <div className={`timer ${timeClass}`}>00:{seconds}</div>
+  return <div className={`timer ${timeClass}`}>{formatTime(seconds)}</div>
 }
-
-/*<div className="button-group">
-              <button className="button" onClick={() => dispatch(toggleTimer())}>
-                {running ? "Pause" : "Start"}
-              </button>
-              <button className="button" onClick={() => dispatch(resetTimer())}>
-                Reset
-              </button>
-            </div> */

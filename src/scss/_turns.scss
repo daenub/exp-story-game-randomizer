@@ -2,6 +2,7 @@ $turn-row-height: 33 / 16 * 1rem;
 
 .turn-list-wrapper {
   height: 3 * $turn-row-height;
+  margin-bottom: 2rem;
   overflow: hidden;
 }
 
@@ -28,7 +29,6 @@ $turn-row-height: 33 / 16 * 1rem;
 
 .turn-row--header {
   font-weight: bold;
-  margin: 0;
   opacity: 1;
 }
 

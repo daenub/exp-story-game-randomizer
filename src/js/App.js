@@ -21,11 +21,11 @@ const App = () => {
   return (
     <main className="main">
       <ControlOverlay />
+      <Timer />
+      <Randomizer />
       <button className="button" onClick={onClickNext}>
         {currentTurn + 1 === GAME_DURATION ? "Spiel beenden" : "Nächster Zug"}
       </button>
-      <Timer />
-      <Randomizer />
     </main>
   )
 }
