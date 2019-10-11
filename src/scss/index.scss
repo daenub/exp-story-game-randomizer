@@ -2,6 +2,7 @@
 @import "variables";
 
 @import "turns";
+@import "overlay";
 
 html,
 body {
@@ -15,8 +16,12 @@ html {
   line-height: 1.5;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 .main {
-  max-width: 64em;
+  max-width: $content-max-width;
   margin: 3rem auto;
   padding: 2rem;
 
@@ -91,4 +96,10 @@ html {
 
 .button-group {
   display: flex;
+}
+
+.timer {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
 }

@@ -72,6 +72,21 @@ function time(state = {startedAt: null, pausedAt: null}, action) {
   }
 }
 
+function game(state = {status: "NOT_STARTED"}, action) {
+  switch (action.type) {
+    case "START_GAME":
+      return {
+        status: "STARTED",
+      }
+    case "END_GAME":
+      return {
+        status: "ENDED",
+      }
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   emotions,
   objects,
@@ -81,6 +96,7 @@ const reducer = combineReducers({
   placesOrder,
   currentTurn,
   time,
+  game,
 })
 
 export default reducer

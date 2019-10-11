@@ -1,4 +1,5 @@
-import {timerIsRunning} from "./selectors.js"
+import {GAME_DURATION} from "../config"
+import {timerIsRunning, getCurrentTurn} from "./selectors.js"
 
 function shuffle(a) {
   let j, x, i
@@ -46,13 +47,36 @@ export function initNewGame() {
   }
 }
 
-export function nextTurn() {
+export function startGame() {
   return dispatch => {
-    dispatch({type: "NEXT_TURN"})
-    dispatch({
-      type: "RESET_TIMER",
-      time: new Date().getTime(),
-    })
+    dispatch({type: "START_GAME"})
+    dispatch(startTimer())
+  }
+}
+
+export function endGame() {
+  return dispatch => {
+    dispatch({type: "END_GAME"})
+  }
+}
+
+export function restartGame() {
+  return dispatch => {
+    dispatch(initNewGame())
+    dispatch(startGame())
+  }
+}
+
+export function nextTurn() {
+  return (dispatch, getState) => {
+    const currentTurn = getCurrentTurn(getState())
+    if (currentTurn + 1 === GAME_DURATION) {
+      dispatch(endGame())
+      dispatch(resetTimer())
+    } else {
+      dispatch({type: "NEXT_TURN"})
+      dispatch(startTimer())
+    }
   }
 }
 
