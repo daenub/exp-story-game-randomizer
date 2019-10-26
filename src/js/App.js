@@ -21,10 +21,19 @@ const App = () => {
   return (
     <main className="main">
       <ControlOverlay />
-      <Timer />
+      <div className="scoreboard">
+        <div className="scoreboard__turn">
+          <h2 className="scoreboard__title">Runde</h2>
+          <div className="current-turn">{currentTurn + 1}</div>
+        </div>
+        <div className="scoreboard__time">
+          <h2 className="scoreboard__title">Zeit</h2>
+          <Timer />
+        </div>
+      </div>
       <Randomizer />
       <button className="button" onClick={onClickNext}>
-        {currentTurn + 1 === GAME_DURATION ? "Spiel beenden" : "Nächster Zug"}
+        {currentTurn + 1 === GAME_DURATION ? "Spiel beenden" : "Nächste Runde"}
       </button>
     </main>
   )

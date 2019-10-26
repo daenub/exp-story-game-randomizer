@@ -22,10 +22,10 @@ export const Randomizer = () => {
   return (
     <div className="randomizer">
       <div className="turn-row turn-row--header" ref={turnHeader}>
-        <div className="turn-row__cell turn-row__cell--number">Zug</div>
+        {/*<div className="turn-row__cell turn-row__cell--number">Zug</div>*/}
         <div className="turn-row__cell turn-row__cell--place">Ort</div>
-        <div className="turn-row__cell turn-row__cell--emotion">Emotion</div>
         <div className="turn-row__cell turn-row__cell--object">Gegenstand</div>
+        <div className="turn-row__cell turn-row__cell--emotion">Emotion</div>
       </div>
       <div className="turn-list-wrapper">
         <ul className="turn-list" ref={turnList}>
@@ -42,17 +42,17 @@ export const Randomizer = () => {
               }`}
               key={turn}
             >
-              <div className="turn-row__cell turn-row__cell--number">
+              {/*<div className="turn-row__cell turn-row__cell--number">
                 {turn}
-              </div>
+              </div>*/}
               <div className="turn-row__cell turn-row__cell--place">
                 {place}
               </div>
-              <div className="turn-row__cell turn-row__cell--emotion">
-                {emotion}
-              </div>
               <div className="turn-row__cell turn-row__cell--object">
                 {object}
+              </div>
+              <div className="turn-row__cell turn-row__cell--emotion">
+                {emotion}
               </div>
             </li>
           ))}

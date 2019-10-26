@@ -83,12 +83,11 @@ p {
 }
 
 .timer {
-  font-size: 2rem;
+  font-size: 5rem;
   font-weight: bold;
-  text-align: center;
+  // text-align: center;
   line-height: 1;
 
-  max-width: 10rem;
   margin: 0 auto 2.5rem;
 
   border: 1px solid transparent;
@@ -102,4 +101,30 @@ p {
   &.danger {
     color: $danger-color;
   }
+}
+
+.current-turn {
+  // text-align: center;
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.scoreboard {
+  display: flex;
+  max-width: 23rem;
+  margin: 0 auto;
+}
+
+.scoreboard__title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.scoreboard__turn {
+  min-width: 33.33%;
+}
+
+.scoreboard__time {
+  // flex: 1;
 }

@@ -1,9 +1,13 @@
-$turn-row-height: 33 / 16 * 1rem;
+$turn-row-height: 33 / 16 * 1rem + .5rem;
+$turn-current-row-height: 45 / 16 * 1rem + 0.75rem;
 
 .turn-list-wrapper {
-  height: 3 * $turn-row-height;
+  height: (2 * $turn-row-height) + $turn-current-row-height;
   margin-bottom: 2rem;
   overflow: hidden;
+
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 .turn-list {
@@ -13,8 +17,8 @@ $turn-row-height: 33 / 16 * 1rem;
 
 .turn-row {
   display: flex;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 
   margin: 0 -0.5rem;
   border-bottom: 1px solid #000;
@@ -29,12 +33,20 @@ $turn-row-height: 33 / 16 * 1rem;
 
 .turn-row--header {
   font-weight: bold;
-  opacity: 1;
+  // display: none;
+  opacity: 0;
 }
 
 .turn-row--current {
   background-color: white;
   opacity: 1;
+  font-size: 1.5rem;
+
+  max-height: $turn-current-row-height;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
 }
 
 .turn-row--prev,
@@ -42,10 +54,24 @@ $turn-row-height: 33 / 16 * 1rem;
   opacity: 0.5;
 }
 
+.turn-row--prev {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.turn-row--next {
+  border-bottom: none;
+
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
 .turn-row__cell {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  width: 25%;
+  flex: 1;
+  transition: 0.3s ease;
+  text-align: center;
 }
 
 .turn-row__cell--number {
