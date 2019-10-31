@@ -85,12 +85,10 @@ p {
 .timer {
   font-size: 5rem;
   font-weight: bold;
-  // text-align: center;
   line-height: 1;
 
-  margin: 0 auto 2.5rem;
-
   border: 1px solid transparent;
+  margin: 0 2rem;
 
   transition: 0.2s ease;
 
@@ -104,27 +102,40 @@ p {
 }
 
 .current-turn {
-  // text-align: center;
   font-size: 5rem;
   font-weight: bold;
-  margin-bottom: 3rem;
 }
 
 .scoreboard {
   display: flex;
   max-width: 23rem;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
 }
 
 .scoreboard__title {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+
+  border-bottom: 1px solid $black;
+
   font-weight: bold;
   font-size: 1.25rem;
+  text-align: center;
+
+  color: lighten($black, 30%);
+}
+
+.scoreboard__turn,
+.scoreboard__time {
+  border: 1px solid $black;
+  padding-bottom: 1.5rem;
 }
 
 .scoreboard__turn {
   min-width: 33.33%;
+  text-align: center;
 }
 
 .scoreboard__time {
-  // flex: 1;
+  border-left: none;
 }
