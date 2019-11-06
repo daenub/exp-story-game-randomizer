@@ -86,15 +86,12 @@ p {
   font-size: 5rem;
   font-weight: bold;
   line-height: 1;
+  text-align: center;
 
   border: 1px solid transparent;
   margin: 0 2rem;
 
   transition: 0.2s ease;
-
-  &.warning {
-    color: $warning-color;
-  }
 
   &.danger {
     color: $danger-color;
@@ -108,8 +105,8 @@ p {
 
 .scoreboard {
   display: flex;
-  max-width: 23rem;
-  margin: 0 auto 3rem;
+  // max-width: 23rem;
+  // margin: 0 auto 0;
 }
 
 .scoreboard__title {
@@ -127,15 +124,17 @@ p {
 
 .scoreboard__turn,
 .scoreboard__time {
+  flex: 1;
   border: 1px solid $black;
+  border-bottom: none;
   padding-bottom: 1.5rem;
 }
 
 .scoreboard__turn {
-  min-width: 33.33%;
   text-align: center;
 }
 
 .scoreboard__time {
+  flex: 1 0 auto;
   border-left: none;
 }
