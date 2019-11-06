@@ -3,7 +3,6 @@ import {useSelector} from "react-redux"
 
 import {timerIsRunning, currentSeconds} from "./store/selectors.js"
 
-const WARNING_TIME = 20
 const DANGER_TIME = 30
 
 const pad0 = n => (n > 9 ? n : "0" + n)
@@ -21,8 +20,7 @@ export const Timer = () => {
   const running = useSelector(timerIsRunning)
   const seconds = useSelector(state => currentSeconds(state, currentTime))
 
-  const timeClass =
-    seconds > WARNING_TIME ? (seconds > DANGER_TIME ? "danger" : "warning") : ""
+  const timeClass = seconds > DANGER_TIME ? "danger" : ""
 
   useEffect(() => {
     let intervalId
